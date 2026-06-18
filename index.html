@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Biblioteca Pokémon con búsqueda, tipos y generaciones desde PokeAPI." />
+  <title>Biblioteca Pokédex</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Biblioteca Pokédex</p>
+        <h1>Explora el mundo Pokémon como un archivo vivo.</h1>
+        <p class="hero-text">
+          Busca un Pokémon, navega por tipos y generaciones, y revisa una biblioteca visual construida solo con datos de PokeAPI.
+        </p>
+        <div class="hero-metrics" aria-label="Resumen de la biblioteca">
+          <article class="metric-card">
+            <span>Modo</span>
+            <strong>Pokémon</strong>
+          </article>
+          <article class="metric-card">
+            <span>Categorías</span>
+            <strong>Tipos y generaciones</strong>
+          </article>
+          <article class="metric-card">
+            <span>Fuente</span>
+            <strong>PokeAPI</strong>
+          </article>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="pokeball-orbit">
+          <span></span>
+        </div>
+        <div class="hero-emblem">
+          <span>Pokédex</span>
+          <strong>Atlas</strong>
+        </div>
+      </div>
+    </header>
+
+    <section class="control-panel" aria-label="Controles de exploración">
+      <div class="control-panel__row">
+        <form id="search-form" class="search-form" autocomplete="off">
+          <label class="sr-only" for="pokemon-input">Nombre o número del Pokémon</label>
+          <input id="pokemon-input" name="pokemon" type="search" placeholder="Escribe Pikachu, 150 o Charizard" required />
+          <button type="submit">Buscar</button>
+        </form>
+        <div class="view-tabs" role="tablist" aria-label="Atajos de biblioteca">
+          <button type="button" class="view-tab is-active" data-scroll-to="featured-section">Destacados</button>
+          <button type="button" class="view-tab" data-scroll-to="type-section">Tipos</button>
+          <button type="button" class="view-tab" data-scroll-to="generation-section">Generaciones</button>
+          <button type="button" class="view-tab" data-scroll-to="detail-section">Ficha</button>
+        </div>
+      </div>
+      <p class="hint">La página ya no mezcla franquicias: todo gira alrededor de Pokémon, sus tipos, sus generaciones y su ficha oficial.</p>
+    </section>
+
+    <section id="status-area" class="status-area" aria-live="polite"></section>
+
+    <section id="loading-state" class="loading-state is-hidden" aria-label="Cargando contenido">
+      <div class="loader"></div>
+      <p>Cargando biblioteca...</p>
+    </section>
+
+    <main class="workspace-grid" aria-label="Biblioteca Pokémon">
+      <section class="panel library-panel" id="featured-section">
+        <header class="panel-head panel-head--split">
+          <div>
+            <p class="panel-kicker">Colección base</p>
+            <h2>Destacados</h2>
+          </div>
+          <p class="panel-note">Una selección de Pokémon icónicos para entrar a la biblioteca sin depender de la búsqueda.</p>
+        </header>
+        <div id="featured-count" class="panel-count">0 Pokémon cargados</div>
+        <div id="featured-grid" class="featured-grid" aria-live="polite"></div>
+      </section>
+
+      <aside class="sidebar-stack">
+        <article class="panel detail-panel" id="detail-section">
+          <header class="panel-head">
+            <p class="panel-kicker">Ficha activa</p>
+            <h2>Pokémon seleccionado</h2>
+          </header>
+          <div id="pokemon-detail" class="panel-body empty-state">
+            <p>Selecciona un Pokémon de la biblioteca o usa la búsqueda para abrir su ficha.</p>
+          </div>
+        </article>
+
+        <article class="panel catalog-panel" id="type-section">
+          <header class="panel-head panel-head--split">
+            <div>
+              <p class="panel-kicker">Categorías</p>
+              <h2>Tipos</h2>
+            </div>
+            <div id="type-count" class="panel-count">0 tipos</div>
+          </header>
+          <div id="type-chips" class="chip-row" aria-label="Filtros por tipo"></div>
+          <div id="type-library" class="catalog-grid" aria-live="polite"></div>
+        </article>
+
+        <article class="panel catalog-panel" id="generation-section">
+          <header class="panel-head panel-head--split">
+            <div>
+              <p class="panel-kicker">Categorías</p>
+              <h2>Generaciones</h2>
+            </div>
+            <div id="generation-count" class="panel-count">0 generaciones</div>
+          </header>
+          <div id="generation-chips" class="chip-row" aria-label="Filtros por generación"></div>
+          <div id="generation-library" class="catalog-grid" aria-live="polite"></div>
+        </article>
+      </aside>
+    </main>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
